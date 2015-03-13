@@ -49,6 +49,7 @@
                     </view>
                     <connections>
                         <segue destination="K1B-Js-2Bw" kind="custom" identifier="idFirstSegue" customClass="FirstCustomSegue" customModule="CustomSegues" customModuleProvider="target" id="R2b-HC-5IQ"/>
+                        <segue destination="ZXb-WT-YR8" kind="custom" identifier="idSecondSegue" customClass="SecondCustomSegue" customModule="CustomSegues" customModuleProvider="target" id="Naa-NR-YJb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -150,8 +151,12 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <segue destination="trp-ZD-AXn" kind="unwind" identifier="idSecondSegueUnwind" unwindAction="returnFromSegueActions:" id="1g9-Oj-atg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rqM-5A-KJe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="trp-ZD-AXn" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="198" y="1006.5"/>
         </scene>

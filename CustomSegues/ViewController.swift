@@ -16,6 +16,10 @@ class ViewController: UIViewController {
         var swipeGestureRecognizer: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "showSecondViewController")
         swipeGestureRecognizer.direction = UISwipeGestureRecognizerDirection.Up
         self.view.addGestureRecognizer(swipeGestureRecognizer)
+
+        var swipeGestureRecognizer2: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "showThirdViewController")
+        swipeGestureRecognizer2.direction = UISwipeGestureRecognizerDirection.Left
+        self.view.addGestureRecognizer(swipeGestureRecognizer2)
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,8 +31,19 @@ class ViewController: UIViewController {
         self.performSegueWithIdentifier("idFirstSegue", sender: self)
     }
 
-    @IBAction func returnFromSegueActions(sender: UIStoryboardSegue) {
+    func showThirdViewController() {
+        self.performSegueWithIdentifier("idSecondSegue", sender: self)
+    }
 
+    @IBAction func returnFromSegueActions(sender: UIStoryboardSegue) {
+        if sender.identifier == "idFirstSegueUnwind" {
+            let originalColor = self.view.backgroundColor
+            self.view.backgroundColor = UIColor.redColor()
+
+            UIView.animateWithDuration(1.0, animations: { () -> Void in
+                self.view.backgroundColor = originalColor
+            })
+        }
     }
 
     override func segueForUnwindingToViewController(toViewController: UIViewController, fromViewController: UIViewController, identifier: String?) -> UIStoryboardSegue {
@@ -37,6 +52,15 @@ class ViewController: UIViewController {
                 let unwindSegue = FirstCustomSegueUnwind(identifier: id, source: fromViewController, destination: toViewController, performHandler: { () -> Void in
 
                 })
+                return unwindSegue
+            } else if id == "idSecondSegueUnwind" {
+                let unwindSegue = SecondCustomSegueUnwind(identifier: id,
+                    source: fromViewController,
+                    destination: toViewController,
+                    performHandler: { () -> Void in
+
+                })
+                
                 return unwindSegue
             }
         }
